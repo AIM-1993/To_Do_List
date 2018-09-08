@@ -42,7 +42,7 @@
             <a class="nav-link" href="#">待办清单</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">关于网站</a>
+            <a class="nav-link" href="{% url 'todolist:关于' %}">关于网站</a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -61,6 +61,7 @@
                         <tr>
                             <th scope="col">序号</th>
                             <th scope="col">待办事项</th>
+                            <th scope="col">编辑</th>
                             <th scope="col">划掉</th>
                             <th scope="col">删除</th>
                         </tr>
@@ -69,18 +70,21 @@
                         <tr>
                             <th scope="row">1</th>
                             <td>小睡一下</td>
+                            <td><a href="{% url 'todolist:关于' %}">编辑</a></td>
                             <td><a href="#">划掉</a></td>
                             <td><a class="text-info" href="#">删除</a></td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
                             <td>看一会儿小说</td>
+                            <td><a href="{% url 'todolist:关于' %}">编辑</a></td>
                             <td><a href="#">划掉</a></td>
                             <td><a class="text-info" href="#">删除</a></td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
                             <td>散步</td>
+                            <td><a href="{% url 'todolist:关于' %}">编辑</a></td>
                             <td><a href="#">划掉</a></td>
                             <td><a class="text-info" href="#">删除</a></td>
                         </tr>
