@@ -1,0 +1,9 @@
+#topnav{
+    font-size: 1.35em;
+    padding-Left: 5em;
+    padding-right: 5em;
+    height: 2.5em;
+}
+nav.input{
+    width: 39%!important;
+}

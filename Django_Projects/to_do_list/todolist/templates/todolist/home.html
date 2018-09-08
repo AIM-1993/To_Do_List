@@ -1,101 +1,44 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-
-    <title>NewToDo你的个人待办清单</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-
-    <style>
-        #topnav{
-            font-size: 1.35em;
-            padding-Left: 5em;
-            padding-right: 5em;
-            height: 2.5em;
-        }
-        .no-underline>tr>td>a:hover{
-            text-decoration: none;
-        }
-        #line-though{
-            text-decoration: line-through;
-        }
-    </style>
-  </head>
-
-  <body>
-
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4" id='topnav'>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">待办清单</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'todolist:关于' %}">关于网站</a>
-          </li>
-        </ul>
-        <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="待办事项" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">添加待办事项</button>
-        </form>
-      </div>
-    </nav>
-    
-
-    <main role="main" class="container">
-        <br>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                    <thead class='thead-light'>
-                        <tr>
-                            <th scope="col">序号</th>
-                            <th scope="col">待办事项</th>
-                            <th scope="col">编辑</th>
-                            <th scope="col">划掉</th>
-                            <th scope="col">删除</th>
-                        </tr>
-                    </thead>
-                    <tbody class="no-underline">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>小睡一下</td>
-                            <td><a href="{% url 'todolist:关于' %}">编辑</a></td>
-                            <td><a href="#">划掉</a></td>
-                            <td><a class="text-info" href="#">删除</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>看一会儿小说</td>
-                            <td><a href="{% url 'todolist:关于' %}">编辑</a></td>
-                            <td><a href="#">划掉</a></td>
-                            <td><a class="text-info" href="#">删除</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>散步</td>
-                            <td><a href="{% url 'todolist:关于' %}">编辑</a></td>
-                            <td><a href="#">划掉</a></td>
-                            <td><a class="text-info" href="#">删除</a></td>
-                        </tr>
-                    </tbody>
-            </table>
-        </div>
-    </main>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+{% extends "todolist/base.html" %}
+{% load static %}
+{% block css %}{% static 'todolist/css/home.css' %}{% endblock %}
+{% block 标题 %}New To Do{% endblock %}
+{% block 主页高亮 %}active{% endblock %}
+{% block 主体 %}
+<br>
+<div class="table-responsive">
+    <table class="table table-hover">
+            <thead class='thead-light'>
+                <tr>
+                    <th scope="col">序号</th>
+                    <th scope="col">待办事项</th>
+                    <th scope="col">编辑</th>
+                    <th scope="col">划掉</th>
+                    <th scope="col">删除</th>
+                </tr>
+            </thead>
+            <tbody class="no-underline">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>小睡一下</td>
+                    <td><a class="text-info" href="{% url 'todolist:编辑' %}">编辑</a></td>
+                    <td><a class="text-info" href="#">划掉</a></td>
+                    <td><a class="text-info" href="#">删除</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>看一会儿小说</td>
+                    <td><a class="text-info" href="{% url 'todolist:编辑' %}">编辑</a></td>
+                    <td><a class="text-info" href="#">划掉</a></td>
+                    <td><a class="text-info" href="#">删除</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>散步</td>
+                    <td><a class="text-info" href="{% url 'todolist:编辑' %}">编辑</a></td>
+                    <td><a class="text-info" href="#">划掉</a></td>
+                    <td><a class="text-info" href="#">删除</a></td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+{% endblock %}
