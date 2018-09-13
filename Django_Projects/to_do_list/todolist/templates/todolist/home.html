@@ -4,6 +4,7 @@
 {% block 标题 %}New To Do{% endblock %}
 {% block 主页高亮 %}active{% endblock %}
 {% block 主体 %}
+{{ 警告 }}
 <br>
 <div class="table-responsive">
     <table class="table table-hover">
@@ -17,27 +18,49 @@
                 </tr>
             </thead>
             <tbody class="no-underline">
-                <tr>
-                    <th scope="row">1</th>
-                    <td>小睡一下</td>
-                    <td><a class="text-info" href="{% url 'todolist:编辑' %}">编辑</a></td>
-                    <td><a class="text-info" href="#">划掉</a></td>
-                    <td><a class="text-info" href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>看一会儿小说</td>
-                    <td><a class="text-info" href="{% url 'todolist:编辑' %}">编辑</a></td>
-                    <td><a class="text-info" href="#">划掉</a></td>
-                    <td><a class="text-info" href="#">删除</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>散步</td>
-                    <td><a class="text-info" href="{% url 'todolist:编辑' %}">编辑</a></td>
-                    <td><a class="text-info" href="#">划掉</a></td>
-                    <td><a class="text-info" href="#">删除</a></td>
-                </tr>
+                {% for 每一件事 in 清单 %}
+                    {% if 每一件事.已完成 %}
+                        <tr class="table-dark">
+                            <th class="text-dark" scope="row">{{ forloop.counter }}</th>
+                            <td class="text-dark" id="line-through">{{ 每一件事.待办事项 }}</td>
+                            <td class="text-secondary">不可编辑</td>
+                            <td>
+                              <form method="POST" action="{% url 'todolist:划掉' forloop.counter %}">
+                                {% csrf_token %}
+                                <input name="完成状态" type="hidden" value="未完成">
+                                <button type="submit" class="btn btn-primary btn-sm">撤销</button>
+                              </form>
+                            </td>
+                            <td>
+                              <form method="POST" action="{% url 'todolist:删除' forloop.counter %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">删除</button>
+                              </form></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ 每一件事.待办事项 }}</td>
+                            <td>
+                              <a class="text-info" href="{% url 'todolist:编辑' forloop.counter %}">
+                                <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                              </a></td>
+                            <td>
+                              <form method="POST" action="{% url 'todolist:划掉' forloop.counter %}">
+                                {% csrf_token %}
+                                <input name="完成状态" type="hidden" value="已完成">
+                                <button type="submit" class="btn btn-primary btn-sm">划掉</button>
+                              </form>
+                            </td>
+                            <td>
+                              <form method="POST" action="{% url 'todolist:删除' forloop.counter %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-sm">删除</button>
+                              </form>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
             </tbody>
     </table>
 </div>
