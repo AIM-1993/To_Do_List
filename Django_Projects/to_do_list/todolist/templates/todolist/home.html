@@ -1,7 +1,7 @@
 {% extends "todolist/base.html" %}
 {% load static %}
 {% block css %}{% static 'todolist/css/home.css' %}{% endblock %}
-{% block 标题 %}New To Do{% endblock %}
+{% block 标题 %}New To Do待办事项记录本{% endblock %}
 {% block 主页高亮 %}active{% endblock %}
 {% block 主体 %}
 {% if 警告 %}
@@ -30,7 +30,7 @@
                     <th scope="col">序号</th>
                     <th scope="col">待办事项</th>
                     <th scope="col">编辑</th>
-                    <th scope="col">划掉</th>
+                    <th scope="col">标记</th>
                     <th scope="col">删除</th>
                 </tr>
             </thead>
@@ -68,7 +68,7 @@
                               <form method="POST" action="{% url 'todolist:划掉' 每一件事.id %}">
                                 {% csrf_token %}
                                 <input name="完成状态" type="hidden" value="已完成">
-                                <button type="submit" class="btn btn-primary btn-sm">划掉</button>
+                                <button type="submit" class="btn btn-primary btn-sm">标记</button>
                               </form>
                             </td>
                             <td>
