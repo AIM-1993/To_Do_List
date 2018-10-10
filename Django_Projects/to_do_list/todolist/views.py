@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Todo
+from django.core.cache import cache
 
 lst = Todo.objects.all()
+cache.set("TODO", "value", timeout=25)
 
 def home(request):
 
